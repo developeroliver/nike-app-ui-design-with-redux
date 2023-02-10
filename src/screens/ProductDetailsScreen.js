@@ -12,8 +12,9 @@ import React from 'react';
 import products from '../data/products';
 import { Ionicons } from '@expo/vector-icons';
 
-const ProductDetailsScreen = () => {
-  const product = products[3];
+const ProductDetailsScreen = ({ route, navigation }) => {
+  // const product = products[1];
+  const { product } = route.params;
 
   const { width } = useWindowDimensions();
 
@@ -63,7 +64,7 @@ const ProductDetailsScreen = () => {
       {/* Navigation icon */}
       <Pressable
         style={styles.icon}
-        onPress={() => console.warn('Back to hom')}
+        onPress={() => navigation.goBack()}
       >
         <Ionicons name="close" size={24} color="white" />
       </Pressable>
