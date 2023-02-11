@@ -1,18 +1,19 @@
 import 'react-native-gesture-handler';
 import { StatusBar } from 'expo-status-bar';
-import { SafeAreaView, StyleSheet, View } from 'react-native';
-import ProductDetailsScreen from './src/screens/ProductDetailsScreen';
-import ProductsScreen from './src/screens/ProductsScreen';
-import ShoppingCartScreen from './src/screens/ShoppingCartScreen';
+import { SafeAreaView, StyleSheet } from 'react-native';
+import { Provider } from 'react-redux';
 import Navigation from './src/navigation/navigation';
+import store from './src/store';
 
 export default function App() {
   return (
-    <SafeAreaView style={styles.container}>
-      <StatusBar style="auto" />
+    <Provider store={store}>
+      <SafeAreaView style={styles.container}>
+        <StatusBar style="auto" />
 
-      <Navigation />
-    </SafeAreaView>
+        <Navigation />
+      </SafeAreaView>
+    </Provider>
   );
 }
 

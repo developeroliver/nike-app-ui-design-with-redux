@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Dimensions } from 'react-native';
 import React from 'react';
 
 const ShoppingCartTotals = () => {
@@ -24,8 +24,8 @@ export default ShoppingCartTotals;
 
 const styles = StyleSheet.create({
   totalsContainer: {
-    margin: 20,
-    paddingTop: 10,
+    margin: Dimensions.get('window').width > 350 ? 20 : 16,
+    paddingTop: Dimensions.get('window').width > 350 ? 10 : 8,
     borderColor: 'gainsboro',
     borderTopWidth: 1,
   },
@@ -35,11 +35,11 @@ const styles = StyleSheet.create({
     marginVertical: 2,
   },
   text: {
-    fontSize: 16,
+    fontSize: Dimensions.get('window').width > 350 ? 16 : 14,
     color: 'gray',
   },
   textBold: {
-    fontSize: 16,
+    fontSize: Dimensions.get('window').width > 350 ? 16 : 14,
     fontWeight: '500',
   },
 });

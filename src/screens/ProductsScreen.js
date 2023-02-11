@@ -6,8 +6,11 @@ import {
   View,
 } from 'react-native';
 import products from '../data/products';
+import { useSelector } from 'react-redux';
 
 const ProductsScreen = ({ navigation }) => {
+  const products = useSelector((state) => state.products.products);
+
   return (
     <FlatList
       data={products}
