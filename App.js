@@ -9,6 +9,7 @@ export default function App() {
   return (
     <Provider store={store}>
       <SafeAreaView style={styles.container}>
+     
         <StatusBar style="auto" />
 
         <Navigation />

@@ -1,25 +1,30 @@
 import {
+  FlatList,
+  Image,
+  Pressable,
+  ScrollView,
   StyleSheet,
   Text,
-  View,
-  Image,
-  FlatList,
   useWindowDimensions,
-  ScrollView,
-  Pressable,
+  View,
 } from 'react-native';
-import React from 'react';
-import products from '../data/products';
+// import products from '../data/products';
 import { Ionicons } from '@expo/vector-icons';
+import { useDispatch, useSelector } from 'react-redux';
+import { cartSlice } from '../store/reducers/cartSlice';
 
-const ProductDetailsScreen = ({ route, navigation }) => {
-  // const product = products[1];
-  const { product } = route.params;
+const ProductDetailsScreen = ({ navigation }) => {
+  const product = useSelector(
+    (state) => state.products.seletedProduct
+  );
+
+  const dispatch = useDispatch();
 
   const { width } = useWindowDimensions();
 
   const addToCard = () => {
-    console.warn('add to cart');
+    dispatch(cartSlice.actions.addCartItem({ product }));
+    navigation.navigate('Products');
   };
 
   return (

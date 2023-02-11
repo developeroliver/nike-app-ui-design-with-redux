@@ -8,6 +8,8 @@ import ProductsScreen from '../screens/ProductsScreen';
 import ShoppingCartScreen from '../screens/ShoppingCartScreen';
 import { Pressable, Text, View } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import { useSelector } from 'react-redux';
+import { selectNumberOfItems } from '../store/reducers/cartSlice';
 
 const Stack = createNativeStackNavigator();
 
@@ -20,6 +22,9 @@ const MyTheme = {
 };
 
 const Navigation = () => {
+  const cart = useSelector((state) => state.cart.items);
+  const numberOfItems = useSelector(selectNumberOfItems);
+
   return (
     <NavigationContainer theme={MyTheme}>
       <Stack.Navigator
@@ -29,6 +34,15 @@ const Navigation = () => {
           name="Products"
           component={ProductsScreen}
           options={({ navigation }) => ({
+            headerTitle: 'Nikee',
+            headerLeft: () => (
+              <Pressable
+                style={{ flexDirection: 'row' }}
+                onPress={() => navigation.navigate('Products')}
+              >
+                <FontAwesome5 name="bars" size={18} color="gray" />
+              </Pressable>
+            ),
             headerRight: () => (
               <Pressable
                 style={{ flexDirection: 'row' }}
@@ -58,7 +72,7 @@ const Navigation = () => {
                       position: 'absolute',
                     }}
                   >
-                    1
+                    {numberOfItems}
                   </Text>
                 </View>
               </Pressable>

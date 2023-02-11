@@ -6,10 +6,12 @@ import {
   View,
 } from 'react-native';
 import products from '../data/products';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { productsSlice } from '../store/reducers/productsSlice';
 
 const ProductsScreen = ({ navigation }) => {
   const products = useSelector((state) => state.products.products);
+  const dispatch = useDispatch();
 
   return (
     <FlatList
@@ -28,9 +30,11 @@ const ProductsScreen = ({ navigation }) => {
         <View style={styles.itemContainer}>
           <Pressable
             onPress={() => {
-              navigation.navigate('Product Details', {
-                product: item,
-              });
+              dispatch(
+                productsSlice.actions.setSelectedProduct(item.id)
+              );
+
+              navigation.navigate('Product Details');
             }}
           >
             <Image
@@ -55,9 +59,10 @@ export default ProductsScreen;
 const styles = StyleSheet.create({
   itemContainer: {
     width: '50%',
-    padding: 1,
+    padding: 5,
   },
   image: {
+    borderRadius: 7,
     width: '100%',
     aspectRatio: 1,
   },
